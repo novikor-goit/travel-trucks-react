@@ -1,0 +1,134 @@
+@layer components {
+  /*  ========== Media rules for background-image ========== */
+  .hero {
+    height: clamp(20rem, 7.472rem + 62.64vw, 37.5rem);
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)),
+      url(../assets/images/hero-image@1x_320.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  /* .buttonFilters {
+    width: 112px;
+    min-height: 96px;
+    border: solid 1px var(--color-borderButtonColor);
+    border-radius: 12px;
+    padding: 6px 10px;
+
+    font-weight: 500;
+    cursor: pointer;
+  } */
+
+  @media (min-width: 320px) {
+    .hero {
+      height: clamp(20rem, 7.472rem + 62.64vw, 37.5rem);
+      background-image:
+        linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)),
+        url(../assets/images/hero-image@1x_320.webp);
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .buttonFilters {
+      width: 55px;
+      min-height: 47px;
+      border: solid 1px var(--color-borderButtonColor);
+      border-radius: 12px;
+      padding: 6px 10px;
+
+      color: var(--color-textSecondary);
+      fill: var(--color-textSecondary);
+      font-size: 8px;
+      line-height: 8px;
+
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .buttonFiltersActive {
+      border: solid 1px var(--color-bgFooterColor);
+      outline: none;
+    }
+
+    .mainImgPrev {
+      height: clamp(13.75rem, 4.205rem + 47.73vw, 40rem);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .hero {
+      height: clamp(9.625rem, -0.05rem + 48.38vw, 58rem);
+      background-image:
+        linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)),
+        url(../assets/images/hero-image@1x_768.webp);
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero {
+      background-image:
+        linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)),
+        url(../assets/images/hero-image@1x_1024.webp);
+    }
+
+    .buttonFilters {
+      width: 112px;
+      min-height: 96px;
+      border: solid 1px var(--color-borderButtonColor);
+      border-radius: 12px;
+      padding: 6px 10px;
+
+      color: var(--color-textPrimary);
+      fill: var(---color-textPrimary);
+      font-size: 16px;
+      line-height: 24px;
+
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .buttonFiltersActive {
+      border: solid 2px var(--color-bgFooterColor);
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .hero {
+      background-image:
+        linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)),
+        url(../assets/images/hero-image@1x.webp);
+    }
+  }
+
+  /*  ========== / Media rules for background-image ========== */
+
+  .heroFilter {
+    height: clamp(9.625rem, -0.05rem + 48.38vw, 58rem);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .notActiveNavLink {
+    body {
+      font-family: 'Inter', sans-serif; /* Основной шрифт */
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 600; /* TailWind ==> font-semibold */
+
+      color: #101828;
+      fill: #101828;
+    }
+  }
+
+  .buttonFiltersActive {
+    border: solid 2px var(--color-bgFooterColor);
+  }
+
+  .previewPicture {
+    width: 292px;
+  }
+}

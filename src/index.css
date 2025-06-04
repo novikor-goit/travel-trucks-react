@@ -1,0 +1,55 @@
+@import 'tailwindcss';
+
+svg {
+  display: block;
+  max-width: 100%;
+  flex-shrink: 0;
+}
+
+@import './styles/variables.css';
+@import './styles/common.css';
+
+body {
+  font-family: 'Inter', sans-serif; /* Основной шрифт */
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600; /* TailWind ==> font-semibold */
+  line-height: 24px;
+
+  color: #101828;
+
+  margin: 0;
+}
+
+@theme {
+  /** --- Colors --- */
+  --color-textPrimary: #101828;
+  --color-textSecondary: #f7f7f7;
+  --color-textAccent: #198f51;
+  --color-textPlaceholder: #6c717b;
+  --color-textMonthPassed: #475467;
+  /* --- */
+  --color-bgPrimaryColor: #ffffff;
+  --color-bgHeaderColor: #f7f7f7;
+  --color-bgFooterColor: #198f51;
+  --color-bgInputColor: #f7f7f7;
+  --color-bgBadgeColor: #f2f4f7;
+  /* --- */
+  --color-ButtonPrimaryColor: #198f51;
+  --color-ButtonPushedColor: #145834;
+  --color-ButtonHoverColor: #3c9767;
+  /* --- */
+  --color-borderButtonColor: #dadde1;
+  --color-borderButtonPushedColor: #145834;
+  --color-borderButtonHoverColor: #ffc531;
+  /* --- */
+  --color-heartColor: #e44848;
+  --color-starColor: #ffc531;
+  --color-darkElementColor: #f2f4f7;
+  /** --- Fonts --- */
+  --font-mainText: Inter, sans-serif;
+  --font-test: Great Vibes, cursive;
+}
+
+@layer utilities {
+}

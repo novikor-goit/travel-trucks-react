@@ -1,0 +1,10 @@
+@layer base {
+  :root {
+    --b: #198f502a;
+
+    .dark {
+      --bg-body: linear-gradient(90deg, #663d3d, #626262);
+      --bg-card: linear-gradient(45deg, #161212, #c4c3b8);
+    }
+  }
+}
