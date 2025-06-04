@@ -1,12 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { getTruckByID } from '../redux/trucks/trucksOperations';
 import { useEffect } from 'react';
-import { useParams, NavLink, Outlet } from 'react-router-dom';
-import {
-  truckDetailsSelector,
-  favoritesSelector,
-  isLoadingSelector
-} from '../redux/trucks/truckSelectors';
+import { NavLink, Outlet, useParams } from 'react-router-dom';
+import { isLoadingSelector, truckDetailsSelector } from '../redux/trucks/truckSelectors';
+import { favoritesSelector } from '../redux/favorites/favoritesSlice';
 import { addToFavorites, removeFromFavorites } from '../redux/favorites/favoritesSlice.js';
 
 import spriteTrucks from '../assets/spriteTrucks.svg';

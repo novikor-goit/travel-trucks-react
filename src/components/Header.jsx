@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useMatch } from 'react-router-dom';
 
 import Logo2x from '../assets/images/Logo@2x.webp';
 import Logo1x from '../assets/images/Logo1x.webp';
@@ -7,24 +7,29 @@ import Button from './Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleFilter } from '../redux/trucks/filterOpen';
 import { isFilterOpenSelector } from '../redux/trucks/truckSelectors';
-import { useState } from 'react';
+import { useEffect, useState } from 'react'; // Import useEffect
 
 function Header() {
   const [isCatalogActive, setIsCatalogActive] = useState(false);
   const isFilterOpen = useSelector(isFilterOpenSelector);
-  // const [isFilterOpen, setIsFilterOpen] = useState(false);
   const dispatch = useDispatch();
 
   const handleToggleFilter = () => {
     dispatch(toggleFilter(!isFilterOpen));
   };
 
-  const handleCatalogActive = ({ isActive }) => {
-    setIsCatalogActive(isActive);
+  const getCatalogNavLinkClass = ({ isActive }) => {
     return isActive
       ? 'text-textAccent'
       : 'notActiveNavLink hover:text-textAccent duration-200 ease-in';
   };
+  const matchCatalog = useMatch('/catalog'); // Check if the current path matches '/catalog'
+
+  useEffect(() => {
+    // Update the state based on whether the catalog path is active
+    setIsCatalogActive(!!matchCatalog); // !! converts to boolean
+  }, [matchCatalog]); // Re-run this effect whenever matchCatalog changes
+
   return (
     <>
       <header className="flex px-[20px] md:px-[64px] py-[24px] items-center justify-between bg-bgBadgeColor fixed top-0 left-0 inset-x-0  z-20">
@@ -51,7 +56,8 @@ function Header() {
             }>
             Home
           </NavLink>
-          <NavLink end to={'catalog'} className={handleCatalogActive}>
+          {/* Use the new function for className */}
+          <NavLink end to={'catalog'} className={getCatalogNavLinkClass}>
             Catalog
           </NavLink>
         </nav>

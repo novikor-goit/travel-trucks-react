@@ -1,20 +1,10 @@
-/* eslint-disable react/jsx-no-undef */
-
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Button from '../components/Button';
 import TrucksList from '../components/TrucksList';
-import { startTransition, useEffect, useState } from 'react';
-import { fetchTrucksData } from '../redux/trucks/trucksOperations';
-
-import {
-  isFilterOpenSelector,
-  isLoadingSelector,
-  trucksSelector
-} from '../redux/trucks/truckSelectors';
-
+import { useEffect, useState } from 'react';
+import { isLoadingSelector, trucksSelector } from '../redux/trucks/truckSelectors';
 import { applyFilters } from '../utils/applyFilters';
 import Filters from '../components/Filters.jsx';
-import Modal from '../components/Modal.jsx';
 import Loader from '../components/Loader';
 
 const initialFilterState = {
@@ -39,25 +29,16 @@ const initialFilterState = {
 };
 
 const CatalogPage = () => {
-  const dispatch = useDispatch();
   const isLoading = useSelector(isLoadingSelector);
-  const isFilterOpen = useSelector(isFilterOpenSelector);
 
   const trucks = useSelector(trucksSelector);
 
   const [visibleCount, setVisibleCount] = useState(4);
-  // const [formInput, setFormInput] = useState(initialFilterState);
   const [formInput, setFormInput] = useState(
     JSON.parse(localStorage.getItem('filterForm')) ?? initialFilterState
   );
   const [renderTrigger, setRenderTrigger] = useState(formInput);
   const [filteredTrucks, setFilteredTrucks] = useState(trucks || []);
-
-  useEffect(() => {
-    startTransition(() => {
-      dispatch(fetchTrucksData());
-    });
-  }, [dispatch]);
 
   useEffect(() => {
     const storageFilter = localStorage.getItem('filterForm');
@@ -103,7 +84,7 @@ const CatalogPage = () => {
           </div>
         ) : (
           <div className="max-w-[936px]">
-            <TrucksList visibleCount={visibleCount} filteredTrucks={filteredTrucks} />
+            <TrucksList visibleCount={visibleCount} trucks={filteredTrucks} formInput={formInput} />
 
             {!isLoading && filteredTrucks.length > visibleCount && (
               <div className="flex items-center justify-center mt-[20px] lg:mt-[30px]">
@@ -116,19 +97,6 @@ const CatalogPage = () => {
             )}
           </div>
         )}
-
-        {/* ======================== Modal Filter Window ======================== */}
-
-        <Modal isOpen={isFilterOpen}>
-          <Filters
-            initialFilterState={initialFilterState}
-            formInput={formInput}
-            setFormInput={setFormInput}
-            setFilteredTrucks={setFilteredTrucks}
-            setRenderTrigger={setRenderTrigger}
-            setVisibleCount={setVisibleCount}
-          />
-        </Modal>
       </div>
     </section>
   );

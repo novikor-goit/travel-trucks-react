@@ -1,15 +1,26 @@
 import { Route, Routes } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import { lazy, startTransition, Suspense, useEffect } from 'react';
 import LoaderClockLoader from './components/LoaderClockLoader';
+import { useDispatch } from 'react-redux';
+import { fetchTrucksData } from './redux/trucks/trucksOperations.js';
+import Layout from './components/Layout.jsx';
 
-const MainLayout = lazy(() => import('./components/./Layout'));
 const MainPage = lazy(() => import('./pages/HomePage'));
 const CatalogPage = lazy(() => import('./pages/CatalogPage'));
 const TruckPage = lazy(() => import('./pages/TruckPage'));
+const FavoritesPage = lazy(() => import('./pages/FavoritesPage'));
 const Features = lazy(() => import('./components/Features'));
 const Reviews = lazy(() => import('./components/Reviews'));
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    startTransition(() => {
+      dispatch(fetchTrucksData());
+    });
+  }, [dispatch]);
+
   return (
     <Suspense
       fallback={
@@ -30,9 +41,10 @@ const App = () => {
         </div>
       }>
       <Routes>
-        <Route path="/" element={<MainLayout />}>
+        <Route path="/" element={<Layout />}>
           <Route index element={<MainPage />} />
           <Route path="catalog" element={<CatalogPage />} />
+          <Route path="favorites" element={<FavoritesPage />} />
           <Route path="catalog/:id" element={<TruckPage />}>
             <Route path="features" element={<Features />} />
             <Route path="reviews" element={<Reviews />} />
