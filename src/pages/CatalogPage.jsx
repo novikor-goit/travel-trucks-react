@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-no-undef */
-
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../components/Button';
 import TrucksList from '../components/TrucksList';
@@ -103,7 +101,11 @@ const CatalogPage = () => {
           </div>
         ) : (
           <div className="max-w-[936px]">
-            <TrucksList visibleCount={visibleCount} filteredTrucks={filteredTrucks} />
+            <TrucksList
+              visibleCount={visibleCount}
+              filteredTrucks={filteredTrucks}
+              formInput={formInput}
+            />
 
             {!isLoading && filteredTrucks.length > visibleCount && (
               <div className="flex items-center justify-center mt-[20px] lg:mt-[30px]">

@@ -9,11 +9,13 @@ const favoritesSlice = createSlice({
   initialState,
   reducers: {
     addToFavorites: (state, action) => {
-      // TODO
+      if (!state.favorites.includes(action.payload)) {
+        state.favorites.push(action.payload);
+      }
     },
 
     removeFromFavorites: (state, action) => {
-      // TODO
+      state.favorites = state.favorites.filter((id) => id !== action.payload);
     }
   }
 });
