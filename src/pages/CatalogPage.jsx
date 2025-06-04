@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import Button from '../components/Button';
 import TrucksList from '../components/TrucksList';
 import { useEffect, useState } from 'react';
-import { isLoadingSelector, trucksSelector } from '../redux/trucks/truckSelectors';
+import { selectIsLoading, selectTrucks } from '../redux/trucks/selectors.js';
 import { applyFilters } from '../utils/applyFilters';
 import Filters from '../components/Filters.jsx';
 import Loader from '../components/Loader';
@@ -29,9 +29,9 @@ const initialFilterState = {
 };
 
 const CatalogPage = () => {
-  const isLoading = useSelector(isLoadingSelector);
+  const isLoading = useSelector(selectIsLoading);
 
-  const trucks = useSelector(trucksSelector);
+  const trucks = useSelector(selectTrucks);
 
   const [visibleCount, setVisibleCount] = useState(4);
   const [formInput, setFormInput] = useState(

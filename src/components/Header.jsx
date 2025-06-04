@@ -1,34 +1,15 @@
-import { Link, NavLink, useMatch } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import Logo2x from '../assets/images/Logo@2x.webp';
 import Logo1x from '../assets/images/Logo1x.webp';
 import Icon from './Icon.jsx';
-import Button from './Button';
-import { useDispatch, useSelector } from 'react-redux';
-import { toggleFilter } from '../redux/trucks/filterOpen';
-import { isFilterOpenSelector } from '../redux/trucks/truckSelectors';
-import { useEffect, useState } from 'react'; // Import useEffect
 
 function Header() {
-  const [isCatalogActive, setIsCatalogActive] = useState(false);
-  const isFilterOpen = useSelector(isFilterOpenSelector);
-  const dispatch = useDispatch();
-
-  const handleToggleFilter = () => {
-    dispatch(toggleFilter(!isFilterOpen));
-  };
-
-  const getCatalogNavLinkClass = ({ isActive }) => {
+  const getLinkClasses = ({ isActive }) => {
     return isActive
       ? 'text-textAccent'
       : 'notActiveNavLink hover:text-textAccent duration-200 ease-in';
   };
-  const matchCatalog = useMatch('/catalog'); // Check if the current path matches '/catalog'
-
-  useEffect(() => {
-    // Update the state based on whether the catalog path is active
-    setIsCatalogActive(!!matchCatalog); // !! converts to boolean
-  }, [matchCatalog]); // Re-run this effect whenever matchCatalog changes
 
   return (
     <>
@@ -56,8 +37,7 @@ function Header() {
             }>
             Home
           </NavLink>
-          {/* Use the new function for className */}
-          <NavLink end to={'catalog'} className={getCatalogNavLinkClass}>
+          <NavLink end to={'catalog'} className={getLinkClasses}>
             Catalog
           </NavLink>
         </nav>
@@ -82,18 +62,6 @@ function Header() {
             )}
           </NavLink>
         </div>
-
-        {isCatalogActive && (
-          <div className="block lg:hidden">
-            <Button
-              icon={isFilterOpen ? 'iconCross' : 'iconFilters'}
-              onClick={handleToggleFilter}
-              iconW="24px"
-              iconH="24px"
-              className="w-full fill-textPrimary flex items-center justify-center"
-            />
-          </div>
-        )}
       </header>
     </>
   );

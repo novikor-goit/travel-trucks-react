@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
-import { truckDetailsSelector } from '../redux/trucks/truckSelectors';
+import { selectTruckDetails } from '../redux/trucks/selectors.js';
 import truckFeatures from '../utils/truckFeatures.js';
 import CategoriesFeaturesLabels from './CategoriesFeaturesLabels';
 
 const Features = () => {
-  const truckDetails = useSelector(truckDetailsSelector);
+  const truckDetails = useSelector(selectTruckDetails);
 
   if (!truckDetails) {
     return <p>No details available.</p>;

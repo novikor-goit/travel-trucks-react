@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 import Button from './Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { favoritesSelector } from '../redux/favorites/favoritesSlice';
-import { addToFavorites, removeFromFavorites } from '../redux/favorites/favoritesSlice.js';
+import {
+  addToFavorites,
+  favoritesSelector,
+  removeFromFavorites
+} from '../redux/favorites/slice.js';
 import truckFeatures from '../utils/truckFeatures.js';
 import CategoriesFeaturesLabels from './CategoriesFeaturesLabels';
 import spriteTrucks from '../assets/spriteTrucks.svg';

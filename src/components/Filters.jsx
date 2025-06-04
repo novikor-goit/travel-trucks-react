@@ -3,7 +3,7 @@ import Button from './Button';
 
 import { vehicleEquipmentFilters, vehicleTypeFilters } from '../utils/vehicleFilters';
 import { useSelector } from 'react-redux';
-import { trucksSelector } from '../redux/trucks/truckSelectors';
+import { selectTrucks } from '../redux/trucks/selectors.js';
 
 const Filters = ({
   initialFilterState,
@@ -13,7 +13,7 @@ const Filters = ({
   setRenderTrigger,
   setVisibleCount
 }) => {
-  const trucks = useSelector(trucksSelector);
+  const trucks = useSelector(selectTrucks);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

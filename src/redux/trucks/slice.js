@@ -8,7 +8,7 @@ const initialState = {
   error: null
 };
 
-const trucksSlice = createSlice({
+const slice = createSlice({
   name: 'trucks',
   initialState,
   reducers: {},
@@ -41,4 +41,4 @@ const trucksSlice = createSlice({
   }
 });
 
-export default trucksSlice.reducer;
+export default slice.reducer;

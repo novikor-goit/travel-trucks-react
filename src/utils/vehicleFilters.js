@@ -6,7 +6,6 @@ export const vehicleEquipmentFilters = [
   { labelFilter: 'Kitchen', iconFilter: 'icon-cup-hot' },
   { labelFilter: 'TV', iconFilter: 'icon-tv' },
   { labelFilter: 'Bathroom', iconFilter: 'icon-ph_shower' },
-  { labelFilter: 'Petrol', iconFilter: 'icon-engine' },
   { labelFilter: 'Radio', iconFilter: 'icon-radio' },
   { labelFilter: 'Refrigerator', iconFilter: 'icon-solar_fridge-outline' },
   { labelFilter: 'Water', iconFilter: 'icon-ion_water-outline' },

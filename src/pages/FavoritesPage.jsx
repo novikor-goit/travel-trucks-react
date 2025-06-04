@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import TrucksList from '../components/TrucksList';
-import { favoriteTrucksSelector } from '../redux/trucks/truckSelectors';
+import { favoriteTrucksSelector } from '../redux/trucks/selectors.js';
 
 const FavoritesPage = () => {
   const trucks = useSelector(favoriteTrucksSelector);

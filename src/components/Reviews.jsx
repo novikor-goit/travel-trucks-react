@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
 import spriteTrucks from '../assets/spriteTrucks.svg';
-import { truckDetailsSelector } from '../redux/trucks/truckSelectors';
+import { selectTruckDetails } from '../redux/trucks/selectors.js';
 
 const Reviews = () => {
-  const truckDetails = useSelector(truckDetailsSelector);
+  const truckDetails = useSelector(selectTruckDetails);
 
   const reviews = truckDetails?.reviews || [];
   return (

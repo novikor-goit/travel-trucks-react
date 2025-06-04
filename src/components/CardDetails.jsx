@@ -2,9 +2,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getTruckByID } from '../redux/trucks/trucksOperations';
 import { useEffect } from 'react';
 import { NavLink, Outlet, useParams } from 'react-router-dom';
-import { isLoadingSelector, truckDetailsSelector } from '../redux/trucks/truckSelectors';
-import { favoritesSelector } from '../redux/favorites/favoritesSlice';
-import { addToFavorites, removeFromFavorites } from '../redux/favorites/favoritesSlice.js';
+import { selectIsLoading, selectTruckDetails } from '../redux/trucks/selectors.js';
+import {
+  addToFavorites,
+  favoritesSelector,
+  removeFromFavorites
+} from '../redux/favorites/slice.js';
 
 import spriteTrucks from '../assets/spriteTrucks.svg';
 import TheForm from './TheForm';
@@ -14,10 +17,10 @@ import Loader from './Loader.jsx';
 function CardDetails() {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const truck = useSelector(truckDetailsSelector);
-  const isLoading = useSelector(isLoadingSelector);
+  const truck = useSelector(selectTruckDetails);
+  const isLoading = useSelector(selectIsLoading);
   const favorites = useSelector(favoritesSelector);
-  // const error = useSelector(errorSelector);
+  // const error = useSelector(selectError);
 
   useEffect(() => {
     if (id) {
