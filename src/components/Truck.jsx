@@ -25,7 +25,7 @@ const Truck = ({ truck }) => {
 
   return (
     <li
-      className="flex flex-col md:flex-row p-[14px] border-[1px] rounded-[20px] outline-0 focus:ring-2  focus:ring-textAccent hover:ring-1 hover:ring-textAccent"
+      className="flex flex-col md:flex-row p-[14px] border-[1px] rounded-[20px] outline-0 focus:ring-2 mb-8  focus:ring-textAccent hover:ring-1 hover:ring-textAccent"
       style={{ borderColor: 'var(--color-borderButtonColor)' }}>
       <img
         src={truck.gallery[0]?.thumb || 'https://defaultPicture'}
@@ -83,7 +83,7 @@ const Truck = ({ truck }) => {
               )
           )}
         </ul>
-        <div className="flex justify-center md:justify-end w-full">
+        <div className="flex justify-center md:justify-start w-full">
           <Link
             to={`/catalog/${truck.id}`}
             state={{ from: '/catalog' }}

@@ -52,6 +52,12 @@ const App = () => {
             <Route path="features?" element={<Features />} />
             <Route path="reviews" element={<Reviews />} />
           </Route>
+          <Route
+            path="*"
+            element={
+              <p className={'text-center text-[24px] font-bold mt-[20px]'}>Page not found</p>
+            }
+          />
         </Route>
       </Routes>
     </Suspense>
