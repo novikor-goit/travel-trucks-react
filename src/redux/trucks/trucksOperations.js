@@ -56,6 +56,9 @@ export const fetchTrucksData = createAsyncThunk(
 
       return data.items;
     } catch (error) {
+      if (error.response && error.response.status === 404) {
+        return [];
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }
