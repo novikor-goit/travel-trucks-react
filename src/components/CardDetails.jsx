@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getTruckByID } from '../redux/trucks/trucksOperations';
 import { useEffect } from 'react';
 import { NavLink, Outlet, useParams } from 'react-router-dom';
-import { selectIsLoading, selectTruckDetails } from '../redux/trucks/selectors.js';
+import { selectError, selectIsLoading, selectTruckDetails } from '../redux/trucks/selectors.js';
 import {
   addToFavorites,
   favoritesSelector,
@@ -10,7 +10,7 @@ import {
 } from '../redux/favorites/slice.js';
 
 import spriteTrucks from '../assets/spriteTrucks.svg';
-import TheForm from './TheForm';
+import BookingForm from './BookingForm';
 import Button from './Button';
 import Loader from './Loader.jsx';
 
@@ -19,14 +19,15 @@ function CardDetails() {
   const dispatch = useDispatch();
   const truck = useSelector(selectTruckDetails);
   const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
   const favorites = useSelector(favoritesSelector);
-  // const error = useSelector(selectError);
 
   useEffect(() => {
+    debugger;
     if (id) {
       dispatch(getTruckByID(id));
     }
-  }, [dispatch, truck, id]);
+  }, [dispatch, id]);
 
   const isFavorite = truck ? favorites.includes(truck.id) : false;
 
@@ -40,6 +41,10 @@ function CardDetails() {
 
   if (isLoading) {
     return <Loader />;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
   }
 
   if (!truck || Object.keys(truck).length === 0) {
@@ -120,14 +125,15 @@ function CardDetails() {
         className="flex justify-center lg:justify-normal mt-[60px] gap-[40px] border-b"
         style={{ borderColor: 'var(--color-borderButtonColor)' }}>
         <NavLink
-          to="features"
+          to=""
           className={({ isActive }) =>
             `text-[16px] font-medium pt-[8px] pb-[24px] ${
               isActive
                 ? 'border-b-[5px] border-heartColor mb-[-3px]'
                 : 'border-b-[0px] border-borderButtonColor'
             }`
-          }>
+          }
+          end>
           Features
         </NavLink>
         <NavLink
@@ -143,7 +149,6 @@ function CardDetails() {
         </NavLink>
       </section>
 
-      {/*-------------- NavLink's Outlet --------------*/}
       <div className="flex flex-col">
         <section className="flex flex-col md:flex-row md:gap-[20px] lg:gap-[40px]">
           <div className="max-w-[631px] order-1">
@@ -151,7 +156,7 @@ function CardDetails() {
           </div>
 
           <section className="order-2 mt-[44px]">
-            <TheForm />
+            <BookingForm />
           </section>
         </section>
       </div>

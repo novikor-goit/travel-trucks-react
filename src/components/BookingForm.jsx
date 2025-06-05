@@ -7,7 +7,7 @@ import Button from './Button';
 const validationSchema = Yup.object({
   name: Yup.string().min(3, 'Min 3 characters').required('Required'),
   email: Yup.string().email('Invalid email').required('Required'),
-  date: Yup.date().required('Required'),
+  date: Yup.date().required('Required').min(new Date(), 'Sorry, but we cannot book in the past'),
   comment: Yup.string()
 });
 
@@ -18,10 +18,10 @@ const initialValues = {
   comment: ''
 };
 
-const TheForm = () => {
+const BookingForm = () => {
   const handleSubmit = async (values, actions) => {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       toast.success('Booking successful');
       actions.resetForm();
     } catch {
@@ -92,4 +92,4 @@ const TheForm = () => {
   );
 };
 
-export default TheForm;
+export default BookingForm;

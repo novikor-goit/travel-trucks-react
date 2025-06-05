@@ -3,6 +3,7 @@ import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import trucksReducer from './trucks/slice.js';
 import favoritesReducer from './favorites/slice.js';
+import filtersReducer from './filters/slice.js';
 
 const favoritesPersistenceReducer = persistReducer(
   {
@@ -15,7 +16,8 @@ const favoritesPersistenceReducer = persistReducer(
 const store = configureStore({
   reducer: {
     trucks: trucksReducer,
-    favorites: favoritesPersistenceReducer
+    favorites: favoritesPersistenceReducer,
+    filters: filtersReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

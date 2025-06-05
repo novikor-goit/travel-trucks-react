@@ -1,8 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy, startTransition, Suspense, useEffect } from 'react';
 import LoaderClockLoader from './components/LoaderClockLoader';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchTrucksData } from './redux/trucks/trucksOperations.js';
+import { selectLimit, selectPage } from './redux/filters/slice.js';
 import Layout from './components/Layout.jsx';
 
 const MainPage = lazy(() => import('./pages/HomePage'));
@@ -14,12 +15,14 @@ const Reviews = lazy(() => import('./components/Reviews'));
 
 const App = () => {
   const dispatch = useDispatch();
+  const page = useSelector(selectPage);
+  const limit = useSelector(selectLimit);
 
   useEffect(() => {
     startTransition(() => {
-      dispatch(fetchTrucksData());
+      dispatch(fetchTrucksData({ page, limit }));
     });
-  }, [dispatch]);
+  }, [dispatch, page, limit]);
 
   return (
     <Suspense
@@ -46,7 +49,7 @@ const App = () => {
           <Route path="catalog" element={<CatalogPage />} />
           <Route path="favorites" element={<FavoritesPage />} />
           <Route path="catalog/:id" element={<TruckPage />}>
-            <Route path="features" element={<Features />} />
+            <Route path="features?" element={<Features />} />
             <Route path="reviews" element={<Reviews />} />
           </Route>
         </Route>

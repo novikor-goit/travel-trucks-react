@@ -1,50 +1,41 @@
 import InputFilter from './InputFilter';
 import Button from './Button';
-
 import { vehicleEquipmentFilters, vehicleTypeFilters } from '../utils/vehicleFilters';
-import { useSelector } from 'react-redux';
-import { selectTrucks } from '../redux/trucks/selectors.js';
+import { useDispatch, useSelector } from 'react-redux';
+import { resetFilters, selectFilters, setFilterField, setPage } from '../redux/filters/slice.js';
+import { resetTrucks } from '../redux/trucks/slice.js';
 
-const Filters = ({
-  initialFilterState,
-  formInput,
-  setFormInput,
-  setFilteredTrucks,
-  setRenderTrigger,
-  setVisibleCount
-}) => {
-  const trucks = useSelector(selectTrucks);
+const Filters = () => {
+  const dispatch = useDispatch();
+  const filters = useSelector(selectFilters);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormInput((prev) => ({ ...prev, [name]: value }));
+    dispatch(setFilterField({ field: name, value }));
   };
+
   const handleEquipmentFilterClick = (filterName) => {
-    setFormInput((prev) => ({
-      ...prev,
-      [filterName]: !prev[filterName]
-    }));
+    dispatch(setFilterField({ field: filterName, value: !filters[filterName] }));
   };
+
   const handleVehicleTypeClick = (formType) => {
-    setFormInput((prev) => ({
-      ...prev,
-      [formType]: !prev[formType]
-    }));
+    dispatch(setFilterField({ field: formType, value: !filters[formType] }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setRenderTrigger(formInput);
+    dispatch(setPage(1));
+    dispatch(resetTrucks());
   };
 
   const handleReset = (e) => {
     e.preventDefault();
-    setFormInput(initialFilterState);
-    localStorage.setItem('filterForm', JSON.stringify(trucks));
-    setFilteredTrucks(trucks);
-    setVisibleCount(4);
+    dispatch(resetFilters());
+    dispatch(setPage(1));
+    dispatch(resetTrucks());
     e.target.blur();
   };
+
   return (
     <div className="px-[32px] pt-[20px] pb-[50px]  md:px-[14px] md:pt-[8px] md:py-[32px]  lg:px-[44px] lg:py-[48px]">
       <form onSubmit={handleSubmit}>
@@ -55,7 +46,7 @@ const Filters = ({
           name="location"
           placeholder="Location"
           onInputChange={handleInputChange}
-          value={formInput.location}
+          value={filters.location}
         />
         <p className="text-[12px] lg:text-[16px] text-textSecondary lg:text-[#475467] font-medium leading-[24px] mt-[16px] lg:mt-[40px]">
           Filters
@@ -74,7 +65,7 @@ const Filters = ({
                   icon={filterFeature.iconFilter}
                   onClick={() => handleEquipmentFilterClick(filterFeature.labelFilter)}
                   className={`flex flex-col items-center justify-center buttonFilters ${
-                    formInput[filterFeature.labelFilter] ? 'buttonFiltersActive' : ''
+                    filters[filterFeature.labelFilter] ? 'buttonFiltersActive' : ''
                   }`}
                 />
               </li>
@@ -94,8 +85,8 @@ const Filters = ({
                   buttonLabel={typeFilter.labelFilter}
                   icon={typeFilter.iconFilter}
                   onClick={() => handleVehicleTypeClick(typeFilter.labelFilter)}
-                  className={`flex flex-col items-center justify-center  } buttonFilters  ${
-                    formInput[typeFilter.labelFilter] ? 'buttonFiltersActive' : ''
+                  className={`flex flex-col items-center justify-center  buttonFilters  ${
+                    filters[typeFilter.labelFilter] ? 'buttonFiltersActive' : ''
                   }`}
                 />
               </li>

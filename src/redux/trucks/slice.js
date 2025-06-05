@@ -11,7 +11,9 @@ const initialState = {
 const slice = createSlice({
   name: 'trucks',
   initialState,
-  reducers: {},
+  reducers: {
+    resetTrucks: () => initialState
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchTrucksData.pending, (state) => {
@@ -20,7 +22,7 @@ const slice = createSlice({
       })
       .addCase(fetchTrucksData.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.trucks = action.payload;
+        state.trucks = [...state.trucks, ...action.payload];
       })
       .addCase(fetchTrucksData.rejected, (state, action) => {
         state.isLoading = false;
@@ -40,5 +42,7 @@ const slice = createSlice({
       });
   }
 });
+
+export const { resetTrucks } = slice.actions;
 
 export default slice.reducer;

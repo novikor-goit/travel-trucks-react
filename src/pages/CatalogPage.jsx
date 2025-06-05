@@ -1,65 +1,18 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '../components/Button';
 import TrucksList from '../components/TrucksList';
-import { useEffect, useState } from 'react';
-import { selectIsLoading, selectTrucks } from '../redux/trucks/selectors.js';
-import { applyFilters } from '../utils/applyFilters';
+import { selectError, selectIsLoading } from '../redux/trucks/selectors.js';
 import Filters from '../components/Filters.jsx';
 import Loader from '../components/Loader';
-
-const initialFilterState = {
-  location: '',
-  transmission: '',
-  engine: '',
-  AC: false,
-  bathroom: false,
-  kitchen: false,
-  TV: false,
-  radio: false,
-  refrigerator: false,
-  microwave: false,
-  gas: false,
-  water: false,
-
-  Automatic: false,
-  Petrol: false,
-  Van: false,
-  'Fully Integrated': false,
-  Alcove: false
-};
+import { incrementPage } from '../redux/filters/slice.js';
 
 const CatalogPage = () => {
+  const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
-
-  const trucks = useSelector(selectTrucks);
-
-  const [visibleCount, setVisibleCount] = useState(4);
-  const [formInput, setFormInput] = useState(
-    JSON.parse(localStorage.getItem('filterForm')) ?? initialFilterState
-  );
-  const [renderTrigger, setRenderTrigger] = useState(formInput);
-  const [filteredTrucks, setFilteredTrucks] = useState(trucks || []);
-
-  useEffect(() => {
-    const storageFilter = localStorage.getItem('filterForm');
-
-    if (storageFilter) {
-      const filtered = applyFilters(trucks, renderTrigger);
-
-      localStorage.setItem('filterForm', JSON.stringify(renderTrigger));
-      setFilteredTrucks(filtered);
-    } else {
-      const filtered = applyFilters(trucks, renderTrigger);
-      localStorage.setItem('filterForm', JSON.stringify(renderTrigger));
-
-      setFilteredTrucks(filtered);
-      setVisibleCount(4);
-      setFilteredTrucks(trucks);
-    }
-  }, [trucks, renderTrigger]);
+  const error = useSelector(selectError);
 
   const handleLoadMore = (event) => {
-    setVisibleCount((prevCount) => prevCount + 4);
+    dispatch(incrementPage());
     event.target.blur();
   };
 
@@ -68,14 +21,7 @@ const CatalogPage = () => {
       {/*! ========== section's container ========== */}
       <div className="flex flex-row w-full">
         <aside className="hidden lg:block max-w-[488px]  ">
-          <Filters
-            initialFilterState={initialFilterState}
-            formInput={formInput}
-            setFormInput={setFormInput}
-            setFilteredTrucks={setFilteredTrucks}
-            setRenderTrigger={setRenderTrigger}
-            setVisibleCount={setVisibleCount}
-          />
+          <Filters />
         </aside>
 
         {isLoading ? (
@@ -84,9 +30,10 @@ const CatalogPage = () => {
           </div>
         ) : (
           <div className="max-w-[936px]">
-            <TrucksList visibleCount={visibleCount} trucks={filteredTrucks} formInput={formInput} />
+            {error && <p>{error}</p>}
+            <TrucksList />
 
-            {!isLoading && filteredTrucks.length > visibleCount && (
+            {!isLoading && (
               <div className="flex items-center justify-center mt-[20px] lg:mt-[30px]">
                 <Button
                   onClick={handleLoadMore}
