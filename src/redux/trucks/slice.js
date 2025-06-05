@@ -11,9 +11,6 @@ const initialState = {
 const slice = createSlice({
   name: 'trucks',
   initialState,
-  reducers: {
-    resetTrucks: () => initialState
-  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchTrucksData.pending, (state) => {
@@ -42,7 +39,5 @@ const slice = createSlice({
       });
   }
 });
-
-export const { resetTrucks } = slice.actions;
 
 export default slice.reducer;

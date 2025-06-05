@@ -1,7 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { favoritesSelector } from '../favorites/slice.js';
 import { selectFilters, selectLimit, selectPage } from '../filters/slice.js';
-import { applyFilters } from '../../utils/applyFilters.js';
 
 export const selectTrucks = (state) => state.trucks.trucks;
 export const selectIsLoading = (state) => state.trucks.isLoading;
@@ -11,8 +10,8 @@ export const selectTruckDetails = (state) => state.trucks.truckDetails;
 export const selectFilteredTrucks = createSelector(
   [selectTrucks, selectFilters],
   (trucks, filters) => {
-    const { page: _page, limit: _limit, ...filterData } = filters;
-    return applyFilters(trucks, filterData);
+    // TODO: implement filtering on API level
+    return trucks;
   }
 );
 

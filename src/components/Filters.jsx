@@ -3,7 +3,6 @@ import Button from './Button';
 import { vehicleEquipmentFilters, vehicleTypeFilters } from '../utils/vehicleFilters';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetFilters, selectFilters, setFilterField, setPage } from '../redux/filters/slice.js';
-import { resetTrucks } from '../redux/trucks/slice.js';
 
 const Filters = () => {
   const dispatch = useDispatch();
@@ -25,14 +24,13 @@ const Filters = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(setPage(1));
-    dispatch(resetTrucks());
+    // TODO
   };
 
   const handleReset = (e) => {
     e.preventDefault();
     dispatch(resetFilters());
     dispatch(setPage(1));
-    dispatch(resetTrucks());
     e.target.blur();
   };
 
@@ -61,11 +59,11 @@ const Filters = () => {
             {vehicleEquipmentFilters.map((filterFeature, ind) => (
               <li key={ind}>
                 <Button
-                  buttonLabel={filterFeature.labelFilter}
+                  buttonLabel={filterFeature.label}
                   icon={filterFeature.iconFilter}
-                  onClick={() => handleEquipmentFilterClick(filterFeature.labelFilter)}
+                  onClick={() => handleEquipmentFilterClick(filterFeature.label)}
                   className={`flex flex-col items-center justify-center buttonFilters ${
-                    filters[filterFeature.labelFilter] ? 'buttonFiltersActive' : ''
+                    filters[filterFeature.label] ? 'buttonFiltersActive' : ''
                   }`}
                 />
               </li>
@@ -82,11 +80,11 @@ const Filters = () => {
             {vehicleTypeFilters.map((typeFilter, ind) => (
               <li key={ind}>
                 <Button
-                  buttonLabel={typeFilter.labelFilter}
+                  buttonLabel={typeFilter.label}
                   icon={typeFilter.iconFilter}
-                  onClick={() => handleVehicleTypeClick(typeFilter.labelFilter)}
+                  onClick={() => handleVehicleTypeClick(typeFilter.label)}
                   className={`flex flex-col items-center justify-center  buttonFilters  ${
-                    filters[typeFilter.labelFilter] ? 'buttonFiltersActive' : ''
+                    filters[typeFilter.label] ? 'buttonFiltersActive' : ''
                   }`}
                 />
               </li>
