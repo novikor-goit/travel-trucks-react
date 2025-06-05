@@ -1,16 +1,40 @@
-# React + Vite
+# Travel Trucks Catalog
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a small React application that displays a catalog of campers. It uses Vite for development tooling and Tailwind CSS for styling.
 
-Currently, two official plugins are available:
+## Prerequisites
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react)
-  uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc)
-  uses [SWC](https://swc.rs/) for Fast Refresh
+- **Node.js** v18 or later
+- **pnpm** package manager (install via `npm install -g pnpm`)
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check
-out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information
-on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Install dependencies:
+
+```bash
+pnpm install
+```
+
+Start the development server:
+
+```bash
+pnpm dev
+```
+
+The application will be available at `http://localhost:5173` by default.
+
+## Useful Commands
+
+- `pnpm lint` - run ESLint checks
+- `pnpm format` - format source files with Prettier
+- `pnpm build` - build the production bundle
+
+## Project Structure
+
+- `src/` – React components, pages and Redux logic
+- `public/` – static assets
+- `vite.config.js` – Vite configuration
+
+---
+
+Happy coding!
