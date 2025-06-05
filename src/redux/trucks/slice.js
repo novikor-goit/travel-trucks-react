@@ -5,7 +5,8 @@ const initialState = {
   trucks: [],
   truckDetails: null,
   isLoading: false,
-  error: null
+  error: null,
+  hasMore: false
 };
 
 const slice = createSlice({
@@ -18,20 +19,24 @@ const slice = createSlice({
         state.error = null;
         if ((action.meta.arg?.page || 1) === 1) {
           state.trucks = [];
+          state.hasMore = false;
         }
       })
       .addCase(fetchTrucksData.fulfilled, (state, action) => {
         state.isLoading = false;
         const page = action.meta.arg?.page || 1;
+        const { items, total } = action.payload;
         if (page === 1) {
-          state.trucks = action.payload;
+          state.trucks = items;
         } else {
-          state.trucks = [...state.trucks, ...action.payload];
+          state.trucks = [...state.trucks, ...items];
         }
+        state.hasMore = state.trucks.length < total;
       })
       .addCase(fetchTrucksData.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
+        state.hasMore = false;
       })
       .addCase(getTruckByID.pending, (state) => {
         state.isLoading = true;

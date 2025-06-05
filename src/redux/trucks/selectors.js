@@ -1,17 +1,5 @@
-import { createSelector } from '@reduxjs/toolkit';
-import { selectFilters, selectLimit, selectPage } from '../filters/slice.js';
-
 export const selectTrucks = (state) => state.trucks.trucks;
 export const selectIsLoading = (state) => state.trucks.isLoading;
 export const selectError = (state) => state.trucks.error;
 export const selectTruckDetails = (state) => state.trucks.truckDetails;
-
-export const selectFilteredTrucks = createSelector(
-  [selectTrucks, selectFilters],
-  (trucks) => trucks
-);
-
-export const selectPaginatedTrucks = createSelector(
-  [selectFilteredTrucks, selectPage, selectLimit],
-  (trucks, page, limit) => trucks.slice(0, page * limit)
-);
+export const selectHasMore = (state) => state.trucks.hasMore;

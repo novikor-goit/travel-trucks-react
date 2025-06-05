@@ -1,7 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../components/Button';
 import TrucksList from '../components/TrucksList';
-import { selectError, selectIsLoading, selectTrucks } from '../redux/trucks/selectors.js';
+import {
+  selectError,
+  selectHasMore,
+  selectIsLoading,
+  selectTrucks
+} from '../redux/trucks/selectors.js';
 import Filters from '../components/Filters.jsx';
 import Loader from '../components/Loader';
 import { incrementPage } from '../redux/filters/slice.js';
@@ -13,6 +18,7 @@ const CatalogPage = () => {
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const trucks = useSelector(selectTrucks);
+  const hasMore = useSelector(selectHasMore);
 
   const handleLoadMore = (event) => {
     dispatch(incrementPage());
@@ -40,7 +46,7 @@ const CatalogPage = () => {
               <p className="text-center mt-[20px]">Sorry, nothing matches your filters</p>
             )}
 
-            {!isLoading && trucks.length > 0 && (
+            {!isLoading && hasMore && trucks.length > 0 && (
               <div className="flex items-center justify-center mt-[20px] lg:mt-[30px]">
                 <Button
                   onClick={handleLoadMore}

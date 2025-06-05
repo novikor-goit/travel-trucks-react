@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
-import { selectPaginatedTrucks } from '../redux/trucks/selectors.js';
+import { selectTrucks } from '../redux/trucks/selectors.js';
 import Truck from './Truck.jsx';
 
 const TrucksList = () => {
-  const trucks = useSelector(selectPaginatedTrucks);
+  const trucks = useSelector(selectTrucks);
 
   return (
     <ul className="flex flex-col gap-[6px]">

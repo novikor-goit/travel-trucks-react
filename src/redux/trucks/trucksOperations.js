@@ -54,10 +54,10 @@ export const fetchTrucksData = createAsyncThunk(
         params
       });
 
-      return data.items;
+      return { items: data.items, total: data.total };
     } catch (error) {
       if (error.response && error.response.status === 404) {
-        return [];
+        return { items: [], total: 0 };
       }
       return thunkAPI.rejectWithValue(error.message);
     }
