@@ -5,8 +5,10 @@ import { selectError, selectIsLoading, selectTrucks } from '../redux/trucks/sele
 import Filters from '../components/Filters.jsx';
 import Loader from '../components/Loader';
 import { incrementPage } from '../redux/filters/slice.js';
+import useSyncFiltersWithURL from '../hooks/useSyncFiltersWithURL.js';
 
 const CatalogPage = () => {
+  useSyncFiltersWithURL();
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
@@ -43,7 +45,7 @@ const CatalogPage = () => {
                 <Button
                   onClick={handleLoadMore}
                   buttonLabel="Load more"
-                  className="min-w-[173px] max-w-[250px] py-[16px] px-[48px] tracking-[-0.08px] leading-[1.5em] text-center text-textPrimary bg-bgPrimaryColor rounded-[200px] border border-borderButtonColor inline-flex items-center justify-center  hover:bg-linear-45 hover:from-[#dadde1] from-40% hover:to-[#ffc531] to-90% outline-0 focus:ring-2 focus:ring-green-500/50 focus:bg-ButtonHoverColor focus:shadow-lg focus:shadow-green-500/50 transition-colors duration-300 ease-in"
+                  className="min-w-[173px] max-w-[250px] py-[16px] px-[48px] tracking-[-0.08px] leading-[1.5em] text-center text-textPrimary bg-bgPrimaryColor rounded-[200px] border border-borderButtonColor inline-flex items-center justify-center  hover:border-borderButtonHoverColor"
                 />
               </div>
             )}

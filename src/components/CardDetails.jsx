@@ -97,15 +97,17 @@ function CardDetails() {
         {/*-------------- Trucks Gallery --------------*/}
         {truck.gallery && truck.gallery.length > 0 ? (
           <div
-            className="grid gap-2 mt-[8px] lg:mt-[28px]"
+            className="grid gap-2 mt-[8px] lg:mt-[28px] gap-x-[32px]"
             style={{
               gridTemplateColumns: 'repeat(auto-fit, minmax(292px, 1fr))'
             }}>
             {truck.gallery.map((image, ind) => (
-              <div key={ind} className="w-full aspect-[292/312] overflow-hidden rounded-[10px]">
+              <div key={ind} className="overflow-hidden rounded-[10px]">
                 <img
                   src={image.thumb}
                   alt={`${truck.name}_preview-${ind + 1}`}
+                  width="291"
+                  height="312"
                   className="w-full h-full object-cover"
                 />
               </div>

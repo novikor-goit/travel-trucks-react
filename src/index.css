@@ -25,23 +25,22 @@ body {
   /** --- Colors --- */
   --color-textPrimary: #101828;
   --color-textSecondary: #f7f7f7;
-  --color-textAccent: #198f51;
+  --color-textAccent: #d84343;
   --color-textPlaceholder: #6c717b;
   --color-textMonthPassed: #475467;
   /* --- */
   --color-bgPrimaryColor: #ffffff;
   --color-bgHeaderColor: #f7f7f7;
-  --color-bgFooterColor: #198f51;
   --color-bgInputColor: #f7f7f7;
   --color-bgBadgeColor: #f2f4f7;
   /* --- */
-  --color-ButtonPrimaryColor: #198f51;
-  --color-ButtonPushedColor: #145834;
-  --color-ButtonHoverColor: #3c9767;
+  --color-ButtonPrimaryColor: #e44848;
+  --color-ButtonPushedColor: #d84343;
+  --color-ButtonHoverColor: #ButtonHoverColor;
   /* --- */
   --color-borderButtonColor: #dadde1;
-  --color-borderButtonPushedColor: #145834;
-  --color-borderButtonHoverColor: #ffc531;
+  --color-borderButtonPushedColor: #d84343;
+  --color-borderButtonHoverColor: #d84343;
   /* --- */
   --color-heartColor: #e44848;
   --color-starColor: #ffc531;

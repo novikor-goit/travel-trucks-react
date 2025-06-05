@@ -120,7 +120,7 @@ const Filters = () => {
             <Button
               buttonLabel="Search"
               type="submit"
-              className="min-w-[40px] md:min-w-[173px] max-w-[250px]  px-[18px] py-[6px]  md:px-[48px] md:py-[12px]  tracking-[-0.08px] leading-[1.5em] text-center text-textSecondary bg-ButtonPrimaryColor rounded-[200px] inline-flex items-center justify-center  hover:bg-linear-45 hover:from-[#3c9767] from-40% hover:to-[#ffc531] to-90% hover:shadow-lg hover:shadow-green-500/50 outline-0 focus:ring-2 focus:ring-green-500/50 focus:bg-ButtonHoverColor focus:shadow-lg focus:shadow-green-500/50 transition-colors duration-300 ease-in mt-[40px]"
+              className="min-w-[40px] md:min-w-[173px] max-w-[250px]  px-[18px] py-[6px]  md:px-[48px] md:py-[12px]  tracking-[-0.08px] leading-[1.5em] text-center text-textSecondary bg-ButtonPrimaryColor rounded-[200px] inline-flex items-center justify-center  hover:bg-linear-45 hover:hover:bg-ButtonPushedColor mt-[40px]"
             />
           </div>
           <div className="flex items-center justify-center order-1 lg:order-2 mx-[22px]">

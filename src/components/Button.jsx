@@ -10,7 +10,7 @@ const Button = ({
   iconH
 }) => {
   return (
-    <button className={`${className} `} type={type} onClick={onClick} icon={icon}>
+    <button className={`${className} cursor-pointer`} type={type} onClick={onClick} icon={icon}>
       {icon && <Icon id={icon} iconW={iconW} iconH={iconH} />}
       {label && <h2 className="mt-[2px] lg:mt-[0px]">{label}</h2>}
     </button>

@@ -11,8 +11,8 @@ const Features = () => {
   }
 
   return (
-    <div className="w-full bg-bgHeaderColor px-[30px] py-[10px] lg:px-[80px] lg:py-[44px] rounded-[10px] mt-[44px] mr-[8px] md:mr-[20px] lg:mr-[40px]">
-      <ul className="flex justify-center flex-wrap gap-[8px] mt-[24px]">
+    <div className="w-full bg-bgHeaderColor px-[30px] py-[10px] lg:px-[52px] lg:py-[44px] rounded-[10px] mt-[44px] mr-[8px] md:mr-[20px] lg:mr-[40px]">
+      <ul className="flex flex-wrap gap-[8px] mt-[24px]">
         {truckFeatures.map(
           (feature) =>
             truckDetails[feature.type] === feature.value && (

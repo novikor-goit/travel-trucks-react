@@ -81,7 +81,7 @@ const BookingForm = () => {
               ${
                 isSubmitting
                   ? 'opacity-10 cursor-not-allowed bg-textMonthPassed'
-                  : 'hover:bg-linear-45 hover:from-[#3c9767] from-40% hover:to-[#ffc531] to-90% hover:shadow-lg hover:shadow-green-500/50 outline-0 focus:ring-2 focus:ring-green-500/50 focus:bg-ButtonHoverColor focus:shadow-lg focus:shadow-green-500/50 transition-colors duration-300 ease-in'
+                  : 'hover:bg-linear-45 hover:hover:bg-ButtonPushedColor'
               }`}
               />
             </div>
