@@ -23,7 +23,6 @@ function CardDetails() {
   const favorites = useSelector(favoritesSelector);
 
   useEffect(() => {
-    debugger;
     if (id) {
       dispatch(getTruckByID(id));
     }

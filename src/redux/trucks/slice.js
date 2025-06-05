@@ -13,13 +13,21 @@ const slice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder
-      .addCase(fetchTrucksData.pending, (state) => {
+      .addCase(fetchTrucksData.pending, (state, action) => {
         state.isLoading = true;
         state.error = null;
+        if ((action.meta.arg?.page || 1) === 1) {
+          state.trucks = [];
+        }
       })
       .addCase(fetchTrucksData.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.trucks = [...state.trucks, ...action.payload];
+        const page = action.meta.arg?.page || 1;
+        if (page === 1) {
+          state.trucks = action.payload;
+        } else {
+          state.trucks = [...state.trucks, ...action.payload];
+        }
       })
       .addCase(fetchTrucksData.rejected, (state, action) => {
         state.isLoading = false;

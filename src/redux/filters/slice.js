@@ -3,7 +3,6 @@ import { createSlice } from '@reduxjs/toolkit';
 export const initialFilterState = {
   location: '',
   transmission: '',
-  engine: '',
   AC: false,
   bathroom: false,
   kitchen: false,
@@ -14,7 +13,6 @@ export const initialFilterState = {
   gas: false,
   water: false,
   Automatic: false,
-  Petrol: false,
   Van: false,
   'Fully Integrated': false,
   Alcove: false,

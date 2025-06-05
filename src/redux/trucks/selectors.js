@@ -9,10 +9,7 @@ export const selectTruckDetails = (state) => state.trucks.truckDetails;
 
 export const selectFilteredTrucks = createSelector(
   [selectTrucks, selectFilters],
-  (trucks, filters) => {
-    // TODO: implement filtering on API level
-    return trucks;
-  }
+  (trucks) => trucks
 );
 
 export const selectPaginatedTrucks = createSelector(

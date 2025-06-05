@@ -2,35 +2,58 @@ import InputFilter from './InputFilter';
 import Button from './Button';
 import { vehicleEquipmentFilters, vehicleTypeFilters } from '../utils/vehicleFilters';
 import { useDispatch, useSelector } from 'react-redux';
-import { resetFilters, selectFilters, setFilterField, setPage } from '../redux/filters/slice.js';
+import {
+  resetFilters,
+  selectFilters,
+  selectLimit,
+  selectPage,
+  setFilterField,
+  setPage
+} from '../redux/filters/slice.js';
+import { fetchTrucksData } from '../redux/trucks/trucksOperations.js';
 
 const Filters = () => {
   const dispatch = useDispatch();
   const filters = useSelector(selectFilters);
+  const limit = useSelector(selectLimit);
+  const page = useSelector(selectPage);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     dispatch(setFilterField({ field: name, value }));
   };
 
-  const handleEquipmentFilterClick = (filterName) => {
-    dispatch(setFilterField({ field: filterName, value: !filters[filterName] }));
+  const handleEquipmentFilterClick = (filterField) => {
+    dispatch(setFilterField({ field: filterField, value: !filters[filterField] }));
   };
 
-  const handleVehicleTypeClick = (formType) => {
-    dispatch(setFilterField({ field: formType, value: !filters[formType] }));
+  const handleVehicleTypeClick = (typeField) => {
+    const isActive = filters[typeField];
+    vehicleTypeFilters.forEach(({ field }) => {
+      dispatch(setFilterField({ field, value: false }));
+    });
+    if (!isActive) {
+      dispatch(setFilterField({ field: typeField, value: true }));
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(setPage(1));
-    // TODO
+    if (page !== 1) {
+      dispatch(setPage(1));
+    } else {
+      dispatch(fetchTrucksData({ page: 1, limit }));
+    }
   };
 
   const handleReset = (e) => {
     e.preventDefault();
     dispatch(resetFilters());
-    dispatch(setPage(1));
+    if (page !== 1) {
+      dispatch(setPage(1));
+    } else {
+      dispatch(fetchTrucksData({ page: 1, limit }));
+    }
     e.target.blur();
   };
 
@@ -61,9 +84,9 @@ const Filters = () => {
                 <Button
                   buttonLabel={filterFeature.label}
                   icon={filterFeature.iconFilter}
-                  onClick={() => handleEquipmentFilterClick(filterFeature.label)}
+                  onClick={() => handleEquipmentFilterClick(filterFeature.field)}
                   className={`flex flex-col items-center justify-center buttonFilters ${
-                    filters[filterFeature.label] ? 'buttonFiltersActive' : ''
+                    filters[filterFeature.field] ? 'buttonFiltersActive' : ''
                   }`}
                 />
               </li>
@@ -82,9 +105,9 @@ const Filters = () => {
                 <Button
                   buttonLabel={typeFilter.label}
                   icon={typeFilter.iconFilter}
-                  onClick={() => handleVehicleTypeClick(typeFilter.label)}
+                  onClick={() => handleVehicleTypeClick(typeFilter.field)}
                   className={`flex flex-col items-center justify-center  buttonFilters  ${
-                    filters[typeFilter.label] ? 'buttonFiltersActive' : ''
+                    filters[typeFilter.field] ? 'buttonFiltersActive' : ''
                   }`}
                 />
               </li>

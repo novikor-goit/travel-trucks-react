@@ -1,34 +1,32 @@
-const labelToProp = {
-  AC: 'AC',
-  TV: 'TV'
-};
-
 export const vehicleEquipmentFilters = [
-  { label: 'AC', iconFilter: 'icon-wind' },
-  { label: 'Kitchen', iconFilter: 'icon-cup-hot' },
-  { label: 'TV', iconFilter: 'icon-tv' },
-  { label: 'Bathroom', iconFilter: 'icon-ph_shower' },
-  { label: 'Radio', iconFilter: 'icon-radio' },
-  { label: 'Refrigerator', iconFilter: 'icon-solar_fridge-outline' },
-  { label: 'Water', iconFilter: 'icon-ion_water-outline' },
-  { label: 'Microwave', iconFilter: 'icon-lucide_microwave' },
-  { label: 'Automatic', iconFilter: 'icon-diagram' }
+  { label: 'AC', field: 'AC', iconFilter: 'icon-wind' },
+  { label: 'Kitchen', field: 'kitchen', iconFilter: 'icon-cup-hot' },
+  { label: 'TV', field: 'TV', iconFilter: 'icon-tv' },
+  { label: 'Bathroom', field: 'bathroom', iconFilter: 'icon-ph_shower' },
+  { label: 'Radio', field: 'radio', iconFilter: 'icon-radio' },
+  { label: 'Refrigerator', field: 'refrigerator', iconFilter: 'icon-solar_fridge-outline' },
+  { label: 'Water', field: 'water', iconFilter: 'icon-ion_water-outline' },
+  { label: 'Microwave', field: 'microwave', iconFilter: 'icon-lucide_microwave' },
+  { label: 'Automatic', field: 'Automatic', iconFilter: 'icon-diagram' }
 ];
 
 export const vehicleTypeFilters = [
   {
     label: 'Van',
-    iconFilter: 'icon-bi_grid-1x2',
-    filter: (truck) => truck.form === 'panelTruck'
+    field: 'Van',
+    form: 'panelTruck',
+    iconFilter: 'icon-bi_grid-1x2'
   },
   {
     label: 'Fully Integrated',
-    iconFilter: 'icon-bi_grid',
-    filter: (truck) => truck.form === 'fullyIntegrated'
+    field: 'Fully Integrated',
+    form: 'fullyIntegrated',
+    iconFilter: 'icon-bi_grid'
   },
   {
     label: 'Alcove',
-    iconFilter: 'icon-bi_grid-3x3-gap',
-    filter: (truck) => truck.form === 'alcove'
+    field: 'Alcove',
+    form: 'alcove',
+    iconFilter: 'icon-bi_grid-3x3-gap'
   }
 ];
