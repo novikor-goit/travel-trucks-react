@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { processFilterFields } from '../filters/utils';
 
 axios.defaults.baseURL = 'https://66b1f8e71ca8ad33d4f5f63e.mockapi.io';
 
@@ -15,40 +16,7 @@ export const fetchTrucksData = createAsyncThunk(
       if (filters.location?.trim()) {
         params.location = filters.location.trim();
       }
-
-      const boolFields = [
-        'AC',
-        'bathroom',
-        'kitchen',
-        'TV',
-        'radio',
-        'refrigerator',
-        'microwave',
-        'gas',
-        'water'
-      ];
-
-      boolFields.forEach((field) => {
-        if (filters[field]) {
-          params[field] = true;
-        }
-      });
-
-      if (filters.Automatic) {
-        params.transmission = 'automatic';
-      }
-
-      if (filters.Van) {
-        params.form = 'panelTruck';
-      }
-
-      if (filters['Fully Integrated']) {
-        params.form = 'fullyIntegrated';
-      }
-
-      if (filters.Alcove) {
-        params.form = 'alcove';
-      }
+      processFilterFields(filters, params);
 
       const { data } = await axios.get('/campers', {
         params

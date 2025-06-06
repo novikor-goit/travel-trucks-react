@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { getTruckByID } from '../redux/trucks/trucksOperations';
 import { useEffect } from 'react';
-import { NavLink, Outlet, useParams } from 'react-router-dom';
+import { Link, NavLink, Outlet, useParams } from 'react-router-dom';
 import { selectError, selectIsLoading, selectTruckDetails } from '../redux/trucks/selectors.js';
 import {
   addToFavorites,
@@ -74,10 +74,10 @@ function CardDetails() {
               }`}>
               <use className="w-[32px] h-[32px] " href={`${spriteTrucks}#iconStarGrey`}></use>
             </svg>
-            <p className="font-normal ml-[4px]">
+            <Link to={`/catalog/${truck.id}/reviews`} className="mt-[0px]  ml-[4px] underline">
               {truck.rating}(
               {`${truck.reviews.length} Review${truck.reviews.length > 1 ? 's' : ''}`})
-            </p>
+            </Link>
           </div>
 
           <div className="flex items-center  flex-wrap mt-[0px]">
@@ -90,7 +90,7 @@ function CardDetails() {
 
         <div className="flex justify-center lg:justify-start">
           <strong className="text-[14px] lg:text-[24px] font-medium leading-[32px] mt-[8px] lg:mt-[16px] block">
-            &#36; {truck.price}
+            €{truck.price.toFixed(2).replace('.', ',')}
           </strong>
         </div>
 

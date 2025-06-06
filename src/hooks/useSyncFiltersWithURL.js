@@ -10,6 +10,7 @@ import {
   setLimit,
   setPage
 } from '../redux/filters/slice.js';
+import { processFilterFields } from '../redux/filters/utils.js';
 
 const useSyncFiltersWithURL = () => {
   const dispatch = useDispatch();
@@ -52,8 +53,7 @@ const useSyncFiltersWithURL = () => {
 
       dispatch(setFilterField({ field: key, value }));
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [searchParams, dispatch]);
 
   // Fetch trucks when pagination changes
   useEffect(() => {
@@ -66,24 +66,7 @@ const useSyncFiltersWithURL = () => {
   useEffect(() => {
     const params = {};
     if (filters.location) params.location = filters.location;
-    const boolFields = [
-      'AC',
-      'bathroom',
-      'kitchen',
-      'TV',
-      'radio',
-      'refrigerator',
-      'microwave',
-      'gas',
-      'water'
-    ];
-    boolFields.forEach((field) => {
-      if (filters[field]) params[field] = true;
-    });
-    if (filters.Automatic) params.transmission = 'automatic';
-    if (filters.Van) params.form = 'panelTruck';
-    if (filters['Fully Integrated']) params.form = 'fullyIntegrated';
-    if (filters.Alcove) params.form = 'alcove';
+    processFilterFields(filters, params);
     params.page = page;
     params.limit = limit;
     setSearchParams(params);

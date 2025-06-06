@@ -34,17 +34,17 @@ const Truck = ({ truck }) => {
       />
       <div className="md:ml-[24px] md:w-full">
         <div className="flex justify-between">
-          <h2 className="text-[18px] lg:text-[24px] leading-[32px]">{truck.name}</h2>
+          <h2 className="text-[18px] lg:text-[24px] leading-[32px] font-semibold">{truck.name}</h2>
           <div className="flex">
             <strong className="text-[14px] lg:text-[24px] font-medium leading-[32px]">
-              &#36; {truck.price}
+              €{truck.price.toFixed(2).replace('.', ',')}
             </strong>
             <Button
               iconW="24px"
               iconH="24px"
               onClick={handleToggleFavorites}
               icon="iconHeartBlack"
-              className={`ml-[12px] mt-[6px] md:mt-[0px] w-[24px] h-[24px] ${
+              className={`ml-[12px] w-[24px] ${
                 isFavorite ? 'fill-heartColor' : 'fill-textPrimary'
               }`}
             />
@@ -59,7 +59,10 @@ const Truck = ({ truck }) => {
               }`}>
               <use className="w-[32px] h-[32px] " href={`${spriteTrucks}#iconStarGrey`}></use>
             </svg>
-            <p className="text-[14px] lg:text-[16px] mt-[0px]  ml-[4px]">{truck.rating}</p>
+            <Link to={`/catalog/${truck.id}/reviews`} className="mt-[0px]  ml-[4px] underline">
+              {truck.rating}(
+              {`${truck.reviews.length} Review${truck.reviews.length > 1 ? 's' : ''}`})
+            </Link>
           </div>
 
           <div className="flex items-center  flex-wrap">

@@ -1,13 +1,15 @@
 import { Link, NavLink } from 'react-router-dom';
+import { clsx } from 'clsx';
 
 import Logo2x from '../assets/images/Logo@2x.webp';
 import Logo1x from '../assets/images/Logo1x.webp';
 
 function Header() {
   const getLinkClasses = ({ isActive }) => {
-    return isActive
-      ? 'text-textAccent'
-      : 'notActiveNavLink hover:text-textAccent duration-200 ease-in';
+    return clsx(
+      'hidden lg:block font-medium',
+      isActive ? 'text-textAccent' : 'notActiveNavLink hover:text-textAccent duration-200 ease-in'
+    );
   };
 
   return (
@@ -26,16 +28,7 @@ function Header() {
           </Link>
         </div>
         <nav className="col-span-1 flex gap-12 justify-center">
-          <NavLink
-            end
-            to={'/'}
-            className={({ isActive }) =>
-              `hidden lg:block ${
-                isActive
-                  ? 'text-textAccent'
-                  : 'notActiveNavLink hover:text-textAccent duration-200 ease-in'
-              }`
-            }>
+          <NavLink end to={'/'} className={getLinkClasses}>
             Home
           </NavLink>
           <NavLink end to={'catalog'} className={getLinkClasses}>

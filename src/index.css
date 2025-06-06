@@ -1,4 +1,6 @@
 @import 'tailwindcss';
+@import './styles/variables.css';
+@import './styles/common.css';
 
 svg {
   display: block;
@@ -6,18 +8,12 @@ svg {
   flex-shrink: 0;
 }
 
-@import './styles/variables.css';
-@import './styles/common.css';
-
 body {
   font-family: 'Inter', sans-serif; /* Основной шрифт */
   font-size: 16px;
   font-style: normal;
-  font-weight: 600; /* TailWind ==> font-semibold */
   line-height: 24px;
-
   color: #101828;
-
   margin: 0;
 }
 
@@ -48,7 +44,4 @@ body {
   /** --- Fonts --- */
   --font-mainText: Inter, sans-serif;
   --font-test: Great Vibes, cursive;
-}
-
-@layer utilities {
 }
